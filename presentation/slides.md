@@ -15,6 +15,20 @@ transition: slide-left
 mdc: true
 ---
 
+# Wie wir mit Approval Tests eine PHP-Legacy-App nach C# portiert haben
+
+#### Tests to the rescue, again!
+
+Patrick Drechsler
+
+---
+
+# Foo
+
+Bar Baz
+
+---
+
 # Welcome to Slidev
 
 Presentation slides for developers
