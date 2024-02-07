@@ -1,0 +1,54 @@
+name: Deploy pages
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+
+    env:
+      PRESENTATION_FOLDER: 'presentation'
+      TARGET_REPO_NAME: '2024-04-mathemacampus-approval-testing'
+      TARGET_GITHUB_OWNER: 'MATHEMA-GmbH'
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: debugging
+        run: |
+            x=${{ secrets.MATHEMA_GH_TOKEN }}
+            n=${#x}
+            echo "Length of token is: $n"
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Install dependencies
+        run: |
+            cd ${{ env.PRESENTATION_FOLDER }}
+            npm install
+
+      - name: Install slidev
+        run:  |
+            cd ${{ env.PRESENTATION_FOLDER }}
+            npm i -g @slidev/cli
+            npm i -g @slidev/theme-default unplugin-icons @iconify/json playwright-chromium
+
+      # Ensure to set the base directory to the current branch name
+      - name: Build
+        run: |
+            cd ${{ env.PRESENTATION_FOLDER }}
+            slidev build --base '/${{ env.TARGET_REPO_NAME }}'
+
+      - name: Deploy to target repository
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          single-commit: true
+          folder: ${{ env.PRESENTATION_FOLDER }}/dist # The folder the action should deploy
+          repository-name: '${{ env.TARGET_GITHUB_OWNER }}/${{ env.TARGET_REPO_NAME }}'
+          token: ${{ secrets.MATHEMA_GH_TOKEN }}
