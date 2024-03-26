@@ -13,6 +13,7 @@ canvasWidth: 980
 layout: cover
 transition: slide-left
 mdc: true
+download: true
 ---
 
 # Wie wir mit Approval Tests eine PHP-Legacy-App nach C# portiert haben
