@@ -16,12 +16,6 @@ jobs:
 
     steps:
 
-      - name: debugging
-        run: |
-            x=${{ secrets.MATHEMA_GH_TOKEN }}
-            n=${#x}
-            echo "Length of token is: $n"
-
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
@@ -34,7 +28,7 @@ jobs:
             npm install
 
       - name: Install slidev
-        run:  |
+        run: |
             cd ${{ env.PRESENTATION_FOLDER }}
             npm i -g @slidev/cli
             npm i -g @slidev/theme-default unplugin-icons @iconify/json playwright-chromium
