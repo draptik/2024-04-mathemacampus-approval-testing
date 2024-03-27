@@ -16,23 +16,14 @@ mdc: true
 download: true
 ---
 
-# Wie wir mit Approval Tests eine PHP-Legacy-App nach C# portiert haben
+# Revitalizing Legacy Code
+# Approval Testing Unleashed
 
-#### Tests to the rescue, again!
+#### Erfahrungen aus der Legacy-App-Portierung und 
+#### Einblicke in die Welt von Verify
 
 Patrick Drechsler
 
-<style>
-.slidev-layout.cover h1 {
-    font-family: Inter;
-    background-image: none;
-    color: black;
-    padding-left: 0;
-}
-p {
-    color: black;
-}
-</style>
 
 ---
 
