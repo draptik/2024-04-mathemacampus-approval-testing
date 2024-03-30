@@ -102,4 +102,68 @@ Patrick Drechsler
 - Durchs Alt-System jagen, Responses aufbewahren
 - Durchs Neu-System jagen, Responses mit denen des Alt-Systems vergleichen
 
-Wie geht das im Detail? 👉 Golden Master Testing
+Wie geht das im Detail?
+
+---
+
+# Definitions
+
+- Golden Master Test
+- Approval Testing
+- Verify
+- Regression Test
+- Acceptance Test
+- Characterization Test (Martin Folwer)
+
+We'll stick with Approval Testing and Verify for now.
+And discuss the others later.
+
+---
+
+# Initial Workflow
+
+No existing `.verified.` file.
+
+```mermaid
+graph LR
+run(Run test and<br/>create Received file)
+failTest(Fail Test<br/>and show Diff)
+closeDiff(Close Diff)
+run-->failTest
+shouldAccept{Accept ?}
+failTest-->shouldAccept
+accept(Move Received<br/>to Verified)
+shouldAccept-- Yes -->accept
+discard(Discard<br/>Received)
+shouldAccept-- No -->discard
+accept-->closeDiff
+discard-->closeDiff
+```
+
+---
+
+# Subsequent Workflow
+
+Existing `.verified.` file.
+
+
+```mermaid
+graph TD
+run(Run test and<br/>create Received file)
+closeDiff(Close Diff)
+failTest(Fail Test<br/>and show Diff)
+run-->isSame
+shouldAccept{Accept ?}
+failTest-->shouldAccept
+accept(Move Received<br/>to Verified)
+shouldAccept-- Yes -->accept
+discard(Discard<br/>Received)
+shouldAccept-- No -->discard
+
+isSame{Compare<br/>Verified +<br/>Received}
+passTest(Pass Test and<br/>discard Received)
+isSame-- Same --> passTest
+isSame-- Different --> failTest
+accept-->closeDiff
+discard-->closeDiff
+```
