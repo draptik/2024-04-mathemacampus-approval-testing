@@ -1,5 +1,0 @@
-﻿{
-  FirstName: Homer,
-  LastName: Simpson,
-  Age: 39
-}
