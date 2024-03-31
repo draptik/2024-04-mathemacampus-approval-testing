@@ -245,9 +245,12 @@ todo
 
 ---
 
-# Verify - JSON
+# Verify - JSON/XML
 
 Order does not matter
+
+- JSON/XML are parsed and compared with .NET standard libraries
+- JSON/XML work out of the box
 
 ---
 
@@ -259,10 +262,25 @@ Order does not matter
 
 ---
 
-# Verify - Diff-Tooling
+# Verify - CI
 
-- Visual Studio Code
-- Rider
+- works out of the box
+- No need to install anything on the CI server
+
+---
+
+# Verify - Diff-Tooling for Devs
+
 - Visual Studio
+- Rider
+- Visual Studio Code
 - OS
-- CI-Flags
+- CI-Flags / Logging
+
+---
+
+# Verify - F# Support
+
+- Ploltly.NET (F#)
+- works out of the box
+
