@@ -5,7 +5,7 @@ public class PersonTests
     [Fact]
     public Task PersonTest()
     {
-        var now = new DateTime(2021, 10, 1);
+        var now = DateTime.Now;
         var homer = new Person(
             "Homer",
             "Simpson",
