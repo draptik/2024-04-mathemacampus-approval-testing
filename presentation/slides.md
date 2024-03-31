@@ -207,3 +207,62 @@ Verified text file:
   Age: 39
 }
 ```
+
+---
+
+# Verify - Randomness
+
+No problem
+
+- GUIDs (by default)
+- TimeStamps (by default)
+- Custom "Scrubbers"
+
+---
+
+# Demo
+
+todo
+
+---
+
+# Verify - Floating Point Numbers
+
+Floating point numbers are always a joy:
+
+Especially when working with different programming languages and platforms.
+
+(Yes, this is still a "problem" with .NET.)
+
+- Custom tests for each platform
+- Custom rounding
+
+---
+
+# Demo
+
+todo
+
+---
+
+# Verify - JSON
+
+Order does not matter
+
+---
+
+# Verify - Setup
+
+- We can define the output folder
+- We can define the file extension
+- ...
+
+---
+
+# Verify - Diff-Tooling
+
+- Visual Studio Code
+- Rider
+- Visual Studio
+- OS
+- CI-Flags
