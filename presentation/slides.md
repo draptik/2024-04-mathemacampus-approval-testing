@@ -81,6 +81,18 @@ Patrick Drechsler
 - Was ist ein Seam? Working Effectively with Legacy Code
 - PHP-Controller Anfrage nicht an PHP weiterleiten, sondern an eine neue Konsolenanwendung
 
+```php
+// Seam which toggles between PHP and .NET
+if ($this->useDotNet) {
+    // C# calculation (new)
+    return $this->calcDotNet("calculate", $request);
+}
+else {
+    // PHP calculation (legacy)
+    return new CalcWithPhp($request);
+}
+```
+
 ---
 
 # Code von PHP nach C# portieren
