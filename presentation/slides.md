@@ -122,7 +122,7 @@ And discuss the others later.
 
 # Initial Workflow
 
-No existing `.verified.` file.
+- No existing `.verified.` file.
 
 ```mermaid
 graph LR
@@ -144,11 +144,11 @@ discard-->closeDiff
 
 # Subsequent Workflow
 
-Existing `.verified.` file.
+- Existing `.verified.` file is compared with `.received.` file...
 
 
 ```mermaid
-graph TD
+graph LR
 run(Run test and<br/>create Received file)
 closeDiff(Close Diff)
 failTest(Fail Test<br/>and show Diff)
@@ -166,4 +166,32 @@ isSame-- Same --> passTest
 isSame-- Different --> failTest
 accept-->closeDiff
 discard-->closeDiff
+```
+
+---
+
+# Demo
+
+```csharp
+public record Person(string FirstName, string LastName, int Age);
+```
+
+```csharp
+// Fact must return Task!
+[Fact]
+public Task HelloWorldTest()
+{
+    var homer = new Person("Homer", "Simpson", 39);
+    return Verify(homer);
+}
+```
+
+Verified text file:
+
+```json
+{
+  FirstName: Homer,
+  LastName: Simpson,
+  Age: 39
+}
 ```
