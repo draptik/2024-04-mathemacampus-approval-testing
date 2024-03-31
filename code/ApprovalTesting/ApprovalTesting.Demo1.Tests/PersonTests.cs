@@ -10,7 +10,7 @@ public class PersonTests
             "Homer",
             "Simpson",
             39,
-            Guid.Parse("d9b3f0b4-3b3b-4b3b-8b3b-3b3b3b3b3b3b"),
+            Guid.NewGuid(),
             now,
             now);
 
