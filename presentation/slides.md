@@ -269,6 +269,6 @@ Order does not matter
 
 # Verify - F# Support
 
-- Ploltly.NET (F#)
+- Plotly.NET (F#)
 - works out of the box
 
