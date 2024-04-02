@@ -26,18 +26,6 @@ Patrick Drechsler
 
 ---
 
-# Mein Hintergrund - soweit relevant
-
-- Bevor ich IT gemacht habe:
-  - Biomechanik / Bionik
-  - vertraut mit Fluid-Dynamik und Rheologie
-- Seit ich IT mache:
-  - Domain-Driven Design (DDD)
-  - Test-Driven Development (TDD)
-  - Functional Programming (FP)
-
----
-
 # Domain-Kontext
 
 - Expertensystem
