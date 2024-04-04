@@ -334,11 +334,12 @@ Order should not matter
 
 # Verify - Diff-Tooling for Devs
 
-- Visual Studio
+- Visual Studio / Windows
 - Rider
 - Visual Studio Code
-- OS
-- CI-Flags / Logging
+- 1st class support for all major IDEs
+
+Very cool: customizable to your needs!
 
 ---
 
