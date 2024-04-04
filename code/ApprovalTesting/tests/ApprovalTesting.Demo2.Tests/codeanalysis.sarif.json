@@ -11,7 +11,46 @@
         "language": "en-US"
       },
       "results": [
-      ]
+        {
+          "ruleId": "CA1707",
+          "level": "warning",
+          "message": "Remove the underscores from member name ApprovalTesting.Demo2.Tests.ShouldWeRenameTests.Why_string_compare_sucks_for_json()",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/patrick/Documents/talks/2024-04-mathemacampus-approval-testing/code/ApprovalTesting/tests/ApprovalTesting.Demo2.Tests/ShouldWeRenameTests.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 17,
+                  "endLine": 8,
+                  "endColumn": 50
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CA1707": {
+          "id": "CA1707",
+          "shortDescription": "Identifiers should not contain underscores",
+          "fullDescription": "By convention, identifier names do not contain the underscore (_) character. This rule checks namespaces, types, members, and parameters.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1707",
+          "properties": {
+            "category": "Naming",
+            "isEnabledByDefault": true,
+            "tags": [
+              "PortedFromFxCop",
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        }
+      }
     }
   ]
 }
