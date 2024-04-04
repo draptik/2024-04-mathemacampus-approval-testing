@@ -1,6 +1,6 @@
 ﻿{
-  LastName: Simpson,
   FirstName: Homer,
+  LastName: Simpson,
   Age: 39,
   Id: Guid_1,
   CreatedAt: DateTimeOffset_1,

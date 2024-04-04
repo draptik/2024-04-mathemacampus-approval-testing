@@ -5,7 +5,7 @@ namespace ApprovalTesting.Demo2.Tests;
 public class ShouldWeRenameTests
 {
     [Fact]
-    public Task Why_string_compare_sucks_for_json()
+    public Task Why_prop_order_comparison_sucks_for_json()
     {
         var person = new Person(
             "Homer",
