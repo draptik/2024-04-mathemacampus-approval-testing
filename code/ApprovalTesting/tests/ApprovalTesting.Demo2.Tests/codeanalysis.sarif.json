@@ -14,7 +14,7 @@
         {
           "ruleId": "CA1707",
           "level": "warning",
-          "message": "Remove the underscores from member name ApprovalTesting.Demo2.Tests.ShouldWeRenameTests.Why_string_compare_sucks_for_json()",
+          "message": "Remove the underscores from member name ApprovalTesting.Demo2.Tests.ShouldWeRenameTests.Why_prop_order_comparison_sucks_for_json()",
           "locations": [
             {
               "resultFile": {
@@ -23,7 +23,7 @@
                   "startLine": 8,
                   "startColumn": 17,
                   "endLine": 8,
-                  "endColumn": 50
+                  "endColumn": 57
                 }
               }
             }
