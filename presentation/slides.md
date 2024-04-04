@@ -26,7 +26,7 @@ Patrick Drechsler
 
 ---
 
-# Domain-Kontext
+# Legacy-Context: Domain
 
 - Expertensystem
 - User: Ingenieure im Vertrieb
@@ -41,7 +41,7 @@ Patrick Drechsler
 
 ---
 
-# Tech-Stack(s)
+# Legacy-Context: Tech-S#@!tack(s)
 
 - Main Stack: LAMP
   - Linux
@@ -55,7 +55,7 @@ Patrick Drechsler
 
 ---
 
-# Legacy Architecture
+# Legacy-Context: Architecture
 
 - FE: Angular
 - BE: PHP
@@ -64,10 +64,10 @@ Patrick Drechsler
 
 ---
 
-# Seam finden
+# Find a "seam"
 
-- Was ist ein Seam? Working Effectively with Legacy Code
-- PHP-Controller Anfrage nicht an PHP weiterleiten, sondern an eine neue Konsolenanwendung
+- what is a seam? Working Effectively with Legacy Code
+- redirecting a php request to a new console application
 
 ```php
 // Seam which toggles between PHP and .NET
@@ -200,42 +200,117 @@ Verified text file:
 
 # Verify - Randomness
 
-No problem
+No problem 👉 "Scrubbers"
+
 
 - GUIDs (by default)
 - TimeStamps (by default)
-- Custom "Scrubbers"
+
+---
+layout: two-cols
+---
+
+- TODO: format code 
+
+```csharp
+public record Person(
+    string FirstName,
+    string LastName,
+    int Age,
+    Guid Id,
+    DateTime CreatedAt,
+    DateTime? UpdatedAt);
+```
+
+::right::
+
+```csharp
+[Fact]
+public Task PersonTest()
+{
+    var now = DateTime.Now;
+    var homer = new Person(
+        "Homer",
+        "Simpson",
+        39,
+        Guid.NewGuid(),
+        now,
+        now);
+
+    return Verify(homer);
+}
+```
+
+```json
+{
+  FirstName: Homer,
+  LastName: Simpson,
+  Age: 39,
+  Id: Guid_1,
+  CreatedAt: DateTime_1,
+  UpdatedAt: DateTime_1
+}
+```
 
 ---
 
-# Demo
+# Verify - Custom Randomness & Scrubbers
 
-todo
+https://github.com/VerifyTests/Verify/blob/main/docs/scrubbers.md
+
+- Example when generating SVGs using Plotly.NET: Scrub all lines containing `#clip` followed by a word character
+- `ScrubLinesWithReplace` and friends
+
+```fsharp
+// F#
+let settings = VerifySettings ()
+settings.ScrubLinesWithReplace (fun line ->
+    System.Text.RegularExpressions.Regex.Replace(line, "#clip\w+", "#clipSCRUBBED"))
+```
+```csharp
+// C# (unverified)
+var settings = new VerifySettings();
+settings.ScrubLinesWithReplace(line =>
+    System.Text.RegularExpressions.Regex.Replace(line, "#clip\\w+", "#clipSCRUBBED"));
+```
 
 ---
 
 # Verify - Floating Point Numbers
 
-Floating point numbers are always a joy:
-
-Especially when working with different programming languages and platforms.
-
-(Yes, this is still a "problem" with .NET.)
-
-- Custom tests for each platform
-- Custom rounding
+- Floating point numbers are always a joy 😿
+- Especially when working with different programming languages and platforms
+- even dotnet will produce different results depending on the platform (Windows, Linux, macOS)
 
 ---
 
-# Demo
+# Verify - Floating Point Numbers
 
-todo
+Verify offers different strategies:
+
+  - Custom rounding
+    ```csharp
+    VerifierSettings.AddExtraSettings(x => x.FloatPrecision = 8);
+    ```
+  - Custom tests for each platform
+    ```csharp
+    // ...
+    settings.UniqueForOSPlatform()
+    // ...
+    ```
+
+Drawback:
+
+- works on Linux dev machine, CI pipeline, target platform
+- fails on Windows dev machine, until windows dev commits
 
 ---
 
 # Verify - JSON/XML
 
-Order does not matter
+- TODO: Add Example
+
+Order should not matter
 
 - JSON/XML are parsed and compared with .NET standard libraries
 - JSON/XML work out of the box
@@ -269,6 +344,30 @@ Order does not matter
 
 # Verify - F# Support
 
-- Plotly.NET (F#)
+- Example: Plotly.NET (F#)
 - works out of the box
 
+---
+
+# Verify - An Example
+
+- TODO: An example showing many features of Verify (incl. web-api)
+
+---
+
+# Definitions - Now you know the tool
+
+- Golden Master Test
+- Approval Testing
+- Verify
+- Regression Test
+- Acceptance Test
+- Characterization Test (Martin Folwer)
+
+TODO:
+
+---
+
+# Summary
+
+TODO:
