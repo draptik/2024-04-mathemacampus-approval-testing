@@ -5,7 +5,7 @@ namespace ApprovalTesting.Demo2.Tests;
 public class JsonTests
 {
     [Fact]
-    public Task Why_prop_order_comparison_sucks_for_json()
+    public Task Person_serialization_demo()
     {
         var person = new Person(
             "Homer",
