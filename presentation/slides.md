@@ -389,16 +389,20 @@ img {
 
 ---
 
-# Definitions - Now you know the tool
+# Definitions - Revisited
 
-- Golden Master Test
-- Approval Testing
-- Verify
-- Regression Test
-- Acceptance Test
-- Characterization Test (Martin Folwer)
-
-TODO:
+- Synonyms:
+  - ✅ Golden Master Test
+  - ✅ Approval Test
+  - ✅ Snapshot Test
+  - ✅ Verification Test / Verify
+- NOT a synonym for:
+  - **Regression Test**
+    - a test which is run to ensure that the code still works after a change
+  - **Acceptance Test**
+    - a test which is run to ensure that the code works as expected
+  - **Characterization Test** (Martin Fowler)
+    - a test which is run to understand the behavior of the code
 
 ---
 
