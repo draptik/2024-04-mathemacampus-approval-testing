@@ -185,7 +185,7 @@ discard-->closeDiff
 
 ---
 
-# Demo
+# Hello World Example
 
 ```csharp
 public record Person(string FirstName, string LastName, int Age);
@@ -224,7 +224,7 @@ No problem 👉 "Scrubbers"
 layout: two-cols
 ---
 
-- TODO: format code 
+- TODO: fix slide layout (css) 
 
 ```csharp
 public record Person(
