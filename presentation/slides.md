@@ -28,16 +28,16 @@ Patrick Drechsler
 
 # Legacy-Context: Domain
 
-- Expertensystem
-- User: Ingenieure im Vertrieb
-- Besonderheiten:
-  - SI-Einheiten
-  - Fließkommazahlen
-  - Mathematik
-    - nicht nur Dreisatz
-    - komplexe Formeln (inkl. Integralrechnung)
-    - sehr viele Formeln (x * 10^3 LoC)
-    - Mathematik ist Core-Domain!
+- expert system
+- user: engineers in sales
+- Special features:
+  - SI units
+  - floating point numbers
+  - mathematics
+    - not just rule of three
+    - complex formulas (including integral calculus)
+    - a lot of formulas (x * 10^3 LoC)
+    - mathematics is core domain!
 
 ---
 
