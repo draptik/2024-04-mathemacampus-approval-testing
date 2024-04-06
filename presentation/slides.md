@@ -129,7 +129,7 @@ How does that work in detail?
 - Verify
 - Regression Test
 - Acceptance Test
-- Characterization Test (Martin Folwer)
+- Characterization Test
 
 We'll stick with "Approval Testing" and "Verify" for now.
 And discuss the others later.
@@ -480,4 +480,9 @@ img {
 
 # Summary
 
-TODO:
+- Verify is a great tool when dealing with legacy code
+- You must find a "seam" in the legacy code to inject the new code
+- Once you found it, you can start porting the code and writing tests
+- Try to keep the "testing the seam" loop as short as possible
+- As always: tests should be automated (especially in CI)...
+- You might still have to deal with the final output format (encoding, floating point numbers, etc.)
