@@ -43,12 +43,12 @@ Patrick Drechsler
 
 # Legacy-Context: Tech-Stack(s)
 
-- Main Stack: LAMP
-  - Linux
-  - Apache
-  - MySQL
-  - PHP
-  - PLUS: Angular 1
+- Main Stack: **LAMP**
+  - **L**inux
+  - **A**pache
+  - **M**ySQL
+  - **P**HP
+  - ✨ Angular 1 (!) ✨
 - Other Stacks
   - C++
   - MATLAB
@@ -57,16 +57,16 @@ Patrick Drechsler
 
 # Legacy-Context: Architecture
 
-- Frontend (FE): Angular
+- Frontend (FE): Angular 1
 - Backend (BE): PHP
-- Bonus: Weiteres externes System hat auch via BE & FE Daten abgerufen
-  - Lassen wir erstmal außen vor
+- Bonus: External system calls to FE & BE
+  - Let's ignore this for now
 
 ---
 
-# Find a "seam"
+# Find a "Seam"
 
-- what is a seam? 👉 M. Feathers "Working Effectively with Legacy Code"
+- What is a Seam? 👉 M. Feathers "Working Effectively with Legacy Code"
 - Example: Redirecting a php request to a new dotnet console application
   ```php
   // Seam which toggles between PHP and .NET
@@ -78,7 +78,8 @@ Patrick Drechsler
     // PHP calculation (legacy)
     return new CalcWithPhp($request);
   }
-
+  ```
+  ```php
   function calcDotNet($endpointName, Request $request)
   {
     // ...
@@ -88,28 +89,36 @@ Patrick Drechsler
   }
   ```
 
----
-
-# Code von PHP nach C# portieren
-
-- sehr viel Tipparbeit
-- sehr viel über Fließkommazahlen lernen
-- Umstruktierung / Refactoring:
-  - Ich war nicht einverstanden mit gewissen Entscheidungen im Altsystem (meiner Ansicht nach zuviel Vererbung, gefolgt von ganz viel if/else in abgeleiteten Klassen)
-  - 👉 Jeder Produkttyp eine unabhängiger Typ ohne Vererbung (dafür viel Code-Duplizierung)
-  - 👉 Stateless Konstrukte eingeführt
-- hat 2-3 Monate gedauert
-- in der Zeit "Blindflug"
+<style>
+.slidev-code {
+  font-size: 10px !important;
+  line-height: 13px !important;
+}
+</style>
 
 ---
 
-# Portierten Code testen
+# Porting Code from PHP to C#
 
-- Vom Kunden hunderte realistische Beispiel-JSONs anfordern, bis die Code Coverage beim .NET Code bei fast 100% ist
-- Durchs Alt-System jagen, Responses aufbewahren
-- Durchs Neu-System jagen, Responses mit denen des Alt-Systems vergleichen
+- a lot of typing (no AI usage)
+- I learned a lot about floating point numbers
+- Restructuring / Refactoring:
+  - I disagreed with certain decisions in the old system (in my opinion too much inheritance, followed by a lot of if/else in derived classes)
+  - 👉 I mapped each product type to an independent type without inheritance (a lot of code duplication)
+  - 👉 I added "Stateless constructs": even more code duplication
+- took 2-3 months
+- no tests during that time
 
-Wie geht das im Detail?
+---
+
+# Testing the Ported Code
+
+- Get hundreds of realistic example JSONs from the customer
+- Run through the old system, save responses
+- Run through the new system, compare responses with saved responses
+- Rinse and repeat until the code coverage of the new .NET code is close to 100%
+
+How does that work in detail?
 
 ---
 
