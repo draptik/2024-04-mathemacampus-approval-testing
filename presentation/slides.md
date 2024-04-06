@@ -188,29 +188,15 @@ discard-->closeDiff
 # Hello World Example
 
 ```csharp
-public record PersonRequest(string FirstName, string LastName, int Age);
-public record PersonVerified(string FirstName, string LastName, int Age)
-{
-    public PersonVerified(PersonRequest request)
-    {
-      if (request == null || string.IsNullOrWhiteSpace(request.FirstName) || string.IsNullOrWhiteSpace(request.LastName))
-      {
-        throw new ArgumentNullException(nameof(request));
-      }
-      FirstName = request.FirstName;
-      LastName = request.LastName;
-      Age = request.Age;
-    }
-}
+public record Person(string FirstName, string LastName, int Age);
 ```
-
 
 ```csharp
 // ⚠️ Fact must return Task!
 [Fact]
 public Task VerifyPersonTest()
 {
-    var request = new PersonRequest("Homer", "Simpson", 39);
+    var request = new Person("Homer", "Simpson", 39);
     return Verify(homer);
 }
 ```
@@ -226,22 +212,47 @@ Verified text file:
 ```
 
 ---
+layout: two-cols-header
+---
 
 # Where is the Arrange-Act-Assert?
 
+Let's add some logic.
+TODO: fix css
+
+::left::
+
 ```csharp
 public record PersonRequest(string FirstName, string LastName, int Age);
+public record PersonResponse(string FirstName, string LastName,int Age)
+{
+  public static PersonResponse FromRequest(PersonRequest request) =>
+    new(request.FirstName, request.LastName,request.Age);
+}
 ```
 
 ```csharp
-// ⚠️ Fact must return Task!
 [Fact]
-public Task HelloWorldTest()
+public Task PersonRequest_homer_is_valid()
 {
-    var homer = new Person("Homer", "Simpson", 39);
-    return Verify(homer);
-}
+  // Arrange
+  var now = DateTime.Now;
+  var homer = new PersonRequest(
+    "Homer",
+    "Simpson",
+    39,
+    Guid.NewGuid(),
+    now,
+    now);
+
+  // Act
+  var actual = PersonResponse.FromRequest(homer);
+  
+  // Assert
+  return Verify(actual);
 ```
+
+::right:: 
 
 Verified text file:
 
@@ -249,9 +260,19 @@ Verified text file:
 {
   FirstName: Homer,
   LastName: Simpson,
-  Age: 39
+  Age: 39,
+  Id: Guid_1,
+  CreatedAt: DateTime_1,
+  UpdatedAt: DateTime_1
 }
 ```
+
+<style>
+.slidev-code {
+  font-size: 8px !important;
+  line-height: 10px !important;
+}
+</style>
 
 ---
 
