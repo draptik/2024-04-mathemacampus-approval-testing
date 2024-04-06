@@ -356,16 +356,18 @@ Very cool: customizable to your needs!
 
 ---
 
-# Verify - Not only for .NET!
+# Verify - For all the languages!
 
-Similar libraries exist for most programming languages. Overview: https://github.com/approvals
+Similar libraries exist for most programming languages.
 
-<p>
+Overview: https://github.com/approvals
+
+<div style="display: inline">
 <img src="/images/lang_cpp.svg" />
 <img src="/images/lang_csharp.svg" />
 <img src="/images/lang_golang.svg" />
 <img src="/images/lang_java.svg" />
-<img src="/images/lang_javasript.svg" />
+<img src="/images/lang_javascript.svg" />
 <img src="/images/lang_labview.svg" />
 <img src="/images/lang_lua.svg" />
 <img src="/images/lang_objective-c.svg" />
@@ -374,11 +376,14 @@ Similar libraries exist for most programming languages. Overview: https://github
 <img src="/images/lang_python.svg" />
 <img src="/images/lang_ruby.svg" />
 <img src="/images/lang_swift.svg" />
-</p>
+</div>
 
 <style>
 img {
   width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+  display: inline-block;
 }
 </style>
 
