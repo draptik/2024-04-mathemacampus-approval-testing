@@ -5,6 +5,9 @@ public class PersonTests
     [Fact]
     public Task PersonTest()
     {
+        // This setting applies to "normal" objects, not JSON (!)
+        // VerifierSettings.SortPropertiesAlphabetically();
+            
         var now = DateTime.Now;
         var homer = new Person(
             "Homer",
