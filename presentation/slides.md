@@ -259,7 +259,7 @@ public Task PersonTest()
 
 ---
 
-# Verify - Custom Randomness & Scrubbers
+# Verify - Custom Scrubbers
 
 https://github.com/VerifyTests/Verify/blob/main/docs/scrubbers.md
 
@@ -353,6 +353,34 @@ Very cool: customizable to your needs!
 # Verify - An Example
 
 - TODO: An example showing many features of Verify (incl. web-api)
+
+---
+
+# Verify - Not only for .NET!
+
+Similar libraries exist for most programming languages. Overview: https://github.com/approvals
+
+<p>
+<img src="/images/lang_cpp.svg" />
+<img src="/images/lang_csharp.svg" />
+<img src="/images/lang_golang.svg" />
+<img src="/images/lang_java.svg" />
+<img src="/images/lang_javasript.svg" />
+<img src="/images/lang_labview.svg" />
+<img src="/images/lang_lua.svg" />
+<img src="/images/lang_objective-c.svg" />
+<img src="/images/lang_perl.svg" />
+<img src="/images/lang_php.svg" />
+<img src="/images/lang_python.svg" />
+<img src="/images/lang_ruby.svg" />
+<img src="/images/lang_swift.svg" />
+</p>
+
+<style>
+img {
+  width: 100px;
+}
+</style>
 
 ---
 
