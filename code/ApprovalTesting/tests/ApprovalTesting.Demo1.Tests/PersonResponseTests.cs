@@ -17,7 +17,7 @@ public class PersonResponseTests
 
         // Act
         var actual = PersonResponse.FromRequest(homer);
-        
+
         // Assert
         return Verify(actual);
     }
