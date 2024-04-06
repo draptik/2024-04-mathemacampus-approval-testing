@@ -188,7 +188,49 @@ discard-->closeDiff
 # Hello World Example
 
 ```csharp
-public record Person(string FirstName, string LastName, int Age);
+public record PersonRequest(string FirstName, string LastName, int Age);
+public record PersonVerified(string FirstName, string LastName, int Age)
+{
+    public PersonVerified(PersonRequest request)
+    {
+      if (request == null || string.IsNullOrWhiteSpace(request.FirstName) || string.IsNullOrWhiteSpace(request.LastName))
+      {
+        throw new ArgumentNullException(nameof(request));
+      }
+      FirstName = request.FirstName;
+      LastName = request.LastName;
+      Age = request.Age;
+    }
+}
+```
+
+
+```csharp
+// ⚠️ Fact must return Task!
+[Fact]
+public Task VerifyPersonTest()
+{
+    var request = new PersonRequest("Homer", "Simpson", 39);
+    return Verify(homer);
+}
+```
+
+Verified text file:
+
+```json
+{
+  FirstName: Homer,
+  LastName: Simpson,
+  Age: 39
+}
+```
+
+---
+
+# Where is the Arrange-Act-Assert?
+
+```csharp
+public record PersonRequest(string FirstName, string LastName, int Age);
 ```
 
 ```csharp

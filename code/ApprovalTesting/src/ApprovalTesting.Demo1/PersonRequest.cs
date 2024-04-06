@@ -1,6 +1,6 @@
 ﻿namespace ApprovalTesting.Demo1;
 
-public record Person(
+public record PersonRequest(
     string FirstName,
     string LastName,
     int Age,
