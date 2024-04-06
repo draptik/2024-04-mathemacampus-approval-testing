@@ -41,7 +41,7 @@ Patrick Drechsler
 
 ---
 
-# Legacy-Context: Tech-S#@!tack(s)
+# Legacy-Context: Tech-Stack(s)
 
 - Main Stack: LAMP
   - Linux
@@ -57,8 +57,8 @@ Patrick Drechsler
 
 # Legacy-Context: Architecture
 
-- FE: Angular
-- BE: PHP
+- Frontend (FE): Angular
+- Backend (BE): PHP
 - Bonus: Weiteres externes System hat auch via BE & FE Daten abgerufen
   - Lassen wir erstmal außen vor
 
@@ -66,20 +66,27 @@ Patrick Drechsler
 
 # Find a "seam"
 
-- what is a seam? Working Effectively with Legacy Code
-- redirecting a php request to a new console application
-
-```php
-// Seam which toggles between PHP and .NET
-if ($this->useDotNet) {
+- what is a seam? 👉 M. Feathers "Working Effectively with Legacy Code"
+- Example: Redirecting a php request to a new dotnet console application
+  ```php
+  // Seam which toggles between PHP and .NET
+  if ($this->useDotNet) {
     // C# calculation (new)
     return $this->calcDotNet("calculate", $request);
-}
-else {
+  }
+  else {
     // PHP calculation (legacy)
     return new CalcWithPhp($request);
-}
-```
+  }
+
+  function calcDotNet($endpointName, Request $request)
+  {
+    // ...
+    $encodedJson = base64_encode($request->getContent());
+    $result = shell_exec("".$dotnetProgramm." ".$endpointName."  ".$encodedJson."");
+    return $result;
+  }
+  ```
 
 ---
 
@@ -89,8 +96,8 @@ else {
 - sehr viel über Fließkommazahlen lernen
 - Umstruktierung / Refactoring:
   - Ich war nicht einverstanden mit gewissen Entscheidungen im Altsystem (meiner Ansicht nach zuviel Vererbung, gefolgt von ganz viel if/else in abgeleiteten Klassen)
-  - Jeder Produkttyp eine unabhängiger Typ ohne Vererbung (dafür viel Code-Duplizierung)
-  - Stateless Konstrukte eingeführt
+  - 👉 Jeder Produkttyp eine unabhängiger Typ ohne Vererbung (dafür viel Code-Duplizierung)
+  - 👉 Stateless Konstrukte eingeführt
 - hat 2-3 Monate gedauert
 - in der Zeit "Blindflug"
 
@@ -115,7 +122,7 @@ Wie geht das im Detail?
 - Acceptance Test
 - Characterization Test (Martin Folwer)
 
-We'll stick with Approval Testing and Verify for now.
+We'll stick with "Approval Testing" and "Verify" for now.
 And discuss the others later.
 
 ---
@@ -145,7 +152,6 @@ discard-->closeDiff
 # Subsequent Workflow
 
 - Existing `.verified.` file is compared with `.received.` file...
-
 
 ```mermaid
 graph LR
@@ -177,7 +183,7 @@ public record Person(string FirstName, string LastName, int Age);
 ```
 
 ```csharp
-// Fact must return Task!
+// ⚠️ Fact must return Task!
 [Fact]
 public Task HelloWorldTest()
 {
@@ -202,7 +208,6 @@ Verified text file:
 
 No problem 👉 "Scrubbers"
 
-
 - GUIDs (by default)
 - TimeStamps (by default)
 
@@ -217,9 +222,9 @@ public record Person(
     string FirstName,
     string LastName,
     int Age,
-    Guid Id,
-    DateTime CreatedAt,
-    DateTime? UpdatedAt);
+    Guid Id,              // 👈
+    DateTime CreatedAt,   // 👈
+    DateTime? UpdatedAt); // 👈
 ```
 
 ::right::
@@ -233,9 +238,9 @@ public Task PersonTest()
         "Homer",
         "Simpson",
         39,
-        Guid.NewGuid(),
-        now,
-        now);
+        Guid.NewGuid(), // 👈
+        now,            // 👈
+        now);           // 👈
 
     return Verify(homer);
 }
@@ -246,9 +251,9 @@ public Task PersonTest()
   FirstName: Homer,
   LastName: Simpson,
   Age: 39,
-  Id: Guid_1,
-  CreatedAt: DateTime_1,
-  UpdatedAt: DateTime_1
+  Id: Guid_1,            // 👈
+  CreatedAt: DateTime_1, // 👈
+  UpdatedAt: DateTime_1  // 👈
 }
 ```
 
@@ -292,26 +297,21 @@ Verify offers different strategies:
     ```csharp
     VerifierSettings.AddExtraSettings(x => x.FloatPrecision = 8);
     ```
-  - Custom tests for each platform
+  - Custom tests for each platform (if above fails)
     ```csharp
     // ...
     settings.UniqueForOSPlatform()
     // ...
     ```
-
-Drawback:
-
-- works on Linux dev machine, CI pipeline, target platform
-- fails on Windows dev machine, until windows dev commits
+    Drawback:
+    - works on Linux dev machine, CI pipeline, target platform
+    - fails on Windows dev machine, until windows dev commits ☹️
 
 ---
 
 # Verify - JSON/XML
 
 - TODO: Add Example
-
-Order should not matter
-
 - JSON/XML are parsed and compared with .NET standard libraries
 - JSON/XML work out of the box
 
