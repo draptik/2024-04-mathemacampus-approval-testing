@@ -2,7 +2,7 @@ using System.Text.Json;
 
 namespace ApprovalTesting.Demo2.Tests;
 
-public class ShouldWeRenameTests
+public class JsonTests
 {
     [Fact]
     public Task Why_prop_order_comparison_sucks_for_json()
