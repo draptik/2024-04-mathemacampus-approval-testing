@@ -8,7 +8,7 @@ company: "MATHEMA GmbH"
 presenter: "Patrick Drechsler"
 contact: "patrick.drechsler@mathema.de"
 info: |
-  ## TODO
+  ## Approval Testing Unleashed
 canvasWidth: 980
 layout: cover
 transition: slide-left
