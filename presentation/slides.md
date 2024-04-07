@@ -196,7 +196,7 @@ public record Person(string FirstName, string LastName, int Age);
 [Fact]
 public Task VerifyPersonTest()
 {
-    var request = new Person("Homer", "Simpson", 39);
+    var homer = new Person("Homer", "Simpson", 39);
     return Verify(homer);
 }
 ```
