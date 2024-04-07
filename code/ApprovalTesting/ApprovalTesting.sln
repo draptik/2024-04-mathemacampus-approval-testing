@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
-		.editoconfig = .editoconfig
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		.gitattributes = .gitattributes
 	EndProjectSection
