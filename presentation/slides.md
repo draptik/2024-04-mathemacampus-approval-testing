@@ -430,6 +430,29 @@ It does not try to compare the invalid JSON with the verified JSON.
 
 So, if you know that you are working with JSON/XML, use `VerifyJson`/`VerifyXml`!
 
+---
+
+# Verify - Simplify Reading Test Data
+
+```csharp
+[Fact]
+public Task Reading_from_file()
+{
+    var fileContent = GetFileContent("valid-demo1.xml");
+    return VerifyXml(fileContent);
+}
+
+// This saves us the hassle from having to deal with file paths in the tests.
+// No more marking the file as "Copy if newer" or "Copy always".
+private static string GetFileContent(string filename)
+{
+    const string sampleFolder = "SampleData";
+    var relative = CurrentFile.Relative(Path.Combine(sampleFolder, filename));
+    var fileContent = File.ReadAllText(relative);
+    return fileContent;
+}
+```
+
 
 ---
 
