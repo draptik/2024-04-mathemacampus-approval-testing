@@ -542,11 +542,11 @@ img {
   - ✅ Snapshot Test
   - ✅ Verification Test / Verify
 - NOT a synonym for:
-  - **Regression Test**
+  - ⚠️ **Regression Test**
     - a test which is run to ensure that the code still works after a change
-  - **Acceptance Test**
+  - ⚠️ **Acceptance Test**
     - a test which is run to ensure that the code works as expected
-  - **Characterization Test** (Martin Fowler)
+  - ⚠️ **Characterization Test** (Martin Fowler)
     - a test which is run to understand the behavior of the code
 
 ---
