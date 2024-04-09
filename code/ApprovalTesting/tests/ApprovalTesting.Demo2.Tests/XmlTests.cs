@@ -30,4 +30,21 @@ public class XmlTests
           <Address />
         </Person>
         """;
+
+    [Fact]
+    public Task Reading_from_file()
+    {
+        var fileContent = GetFileContent("valid-demo1.xml");
+        return VerifyXml(fileContent);
+    }
+
+    // This saves us the hassle from having to deal with file paths in the tests.
+    // No more marking the file as "Copy if newer" or "Copy always".
+    private static string GetFileContent(string filename)
+    {
+        const string sampleFolder = "SampleData";
+        var relative = CurrentFile.Relative(Path.Combine(sampleFolder, filename));
+        var fileContent = File.ReadAllText(relative);
+        return fileContent;
+    }
 }
