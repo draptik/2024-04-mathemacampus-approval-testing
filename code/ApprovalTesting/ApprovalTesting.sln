@@ -26,17 +26,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		.gitattributes = .gitattributes
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{EE10701E-A394-427B-8CC5-26E8846E52BF}"
 	ProjectSection(SolutionItems) = preProject
 		src\Directory.Build.props = src\Directory.Build.props
+		src\README.md = src\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{C32F814E-6E88-4D42-B2F1-57FD87C5E01C}"
 	ProjectSection(SolutionItems) = preProject
 		tests\Directory.Build.props = tests\Directory.Build.props
 		tests\.editorconfig = tests\.editorconfig
+		tests\README.md = tests\README.md
 	EndProjectSection
 EndProject
 Global
