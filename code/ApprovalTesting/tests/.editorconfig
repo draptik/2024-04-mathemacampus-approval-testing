@@ -1,6 +1,3 @@
-
-
-
 # Verify settings
 [*.{received,verified}.{txt,xml,json}]
 charset = "utf-8-bom"
@@ -11,7 +8,13 @@ insert_final_newline = false
 tab_width = unset
 trim_trailing_whitespace = false
 
-# Allow underscore
 [*.cs]
+# Allow underscores in test method names
 dotnet_diagnostic.CA1707.severity = none
+
+# Don't complain about expression syntax vs block body syntax
 dotnet_diagnostic.IDE0022.severity = none
+
+[JsonTests.cs]
+# Allow skipping tests for demo purposes
+dotnet_diagnostic.xUnit1004.severity = none
