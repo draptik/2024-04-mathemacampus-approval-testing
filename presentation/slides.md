@@ -276,6 +276,82 @@ Verified text file:
 
 ---
 
+# Verify - Randomness
+
+No problem 👉 "Scrubbers"
+
+- GUIDs (by default)
+- TimeStamps (by default)
+
+---
+layout: two-cols
+---
+
+- TODO: fix slide layout (css) 
+
+```csharp
+public record Person(
+    string FirstName,
+    string LastName,
+    int Age,
+    Guid Id,              // 👈
+    DateTime CreatedAt,   // 👈
+    DateTime? UpdatedAt); // 👈
+```
+
+::right::
+
+```csharp
+[Fact]
+public Task PersonTest()
+{
+    var now = DateTime.Now;
+    var homer = new Person(
+        "Homer",
+        "Simpson",
+        39,
+        Guid.NewGuid(), // 👈
+        now,            // 👈
+        now);           // 👈
+
+    return Verify(homer);
+}
+```
+
+```json
+{
+  FirstName: Homer,
+  LastName: Simpson,
+  Age: 39,
+  Id: Guid_1,            // 👈
+  CreatedAt: DateTime_1, // 👈
+  UpdatedAt: DateTime_1  // 👈
+}
+```
+
+---
+
+# Verify - Custom Scrubbers
+
+https://github.com/VerifyTests/Verify/blob/main/docs/scrubbers.md
+
+- Example when generating SVGs using Plotly.NET: Scrub all lines containing `#clip` followed by a word character
+- `ScrubLinesWithReplace` and friends
+
+```fsharp
+// F#
+let settings = VerifySettings ()
+settings.ScrubLinesWithReplace (fun line ->
+    System.Text.RegularExpressions.Regex.Replace(line, "#clip\w+", "#clipSCRUBBED"))
+```
+```csharp
+// C# (unverified)
+var settings = new VerifySettings();
+settings.ScrubLinesWithReplace(line =>
+    System.Text.RegularExpressions.Regex.Replace(line, "#clip\\w+", "#clipSCRUBBED"));
+```
+---
+
 # Verify - Diff-Tooling for Devs
 
 - Visual Studio / Windows
@@ -353,82 +429,7 @@ Argon.JsonReaderException: Unexpected end of content while loading JObject
 It does not try to compare the invalid JSON with the verified JSON.
 
 So, if you know that you are working with JSON/XML, use `VerifyJson`/`VerifyXml`!
----
 
-# Verify - Randomness
-
-No problem 👉 "Scrubbers"
-
-- GUIDs (by default)
-- TimeStamps (by default)
-
----
-layout: two-cols
----
-
-- TODO: fix slide layout (css) 
-
-```csharp
-public record Person(
-    string FirstName,
-    string LastName,
-    int Age,
-    Guid Id,              // 👈
-    DateTime CreatedAt,   // 👈
-    DateTime? UpdatedAt); // 👈
-```
-
-::right::
-
-```csharp
-[Fact]
-public Task PersonTest()
-{
-    var now = DateTime.Now;
-    var homer = new Person(
-        "Homer",
-        "Simpson",
-        39,
-        Guid.NewGuid(), // 👈
-        now,            // 👈
-        now);           // 👈
-
-    return Verify(homer);
-}
-```
-
-```json
-{
-  FirstName: Homer,
-  LastName: Simpson,
-  Age: 39,
-  Id: Guid_1,            // 👈
-  CreatedAt: DateTime_1, // 👈
-  UpdatedAt: DateTime_1  // 👈
-}
-```
-
----
-
-# Verify - Custom Scrubbers
-
-https://github.com/VerifyTests/Verify/blob/main/docs/scrubbers.md
-
-- Example when generating SVGs using Plotly.NET: Scrub all lines containing `#clip` followed by a word character
-- `ScrubLinesWithReplace` and friends
-
-```fsharp
-// F#
-let settings = VerifySettings ()
-settings.ScrubLinesWithReplace (fun line ->
-    System.Text.RegularExpressions.Regex.Replace(line, "#clip\w+", "#clipSCRUBBED"))
-```
-```csharp
-// C# (unverified)
-var settings = new VerifySettings();
-settings.ScrubLinesWithReplace(line =>
-    System.Text.RegularExpressions.Regex.Replace(line, "#clip\\w+", "#clipSCRUBBED"));
-```
 
 ---
 
@@ -436,7 +437,11 @@ settings.ScrubLinesWithReplace(line =>
 
 - Floating point numbers are always a joy 😿
 - Especially when working with different programming languages and platforms
-- even dotnet will produce different results depending on the platform (Windows, Linux, macOS)
+- `dotnet` will produce different results depending on the platform (Windows, Linux, macOS)
+  - [MathNet.Numerics](https://numerics.mathdotnet.com/) might produce different results...
+  - probably a niche case, but be aware of it
+  - CI and/or target platform might differ from your dev machine 🤔
+  - possible solutions.. 👉
 
 ---
 
