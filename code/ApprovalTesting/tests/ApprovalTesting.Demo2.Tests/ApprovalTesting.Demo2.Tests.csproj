@@ -9,4 +9,8 @@
       <ProjectReference Include="..\..\src\ApprovalTesting.Demo2\ApprovalTesting.Demo2.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="JetBrains.Annotations" />
+    </ItemGroup>
+
 </Project>
