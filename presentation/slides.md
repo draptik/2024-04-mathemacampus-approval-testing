@@ -276,6 +276,85 @@ Verified text file:
 
 ---
 
+# Verify - Diff-Tooling for Devs
+
+- Visual Studio / Windows
+- Rider
+- Visual Studio Code
+- 1st class support for all major IDEs
+- 1st class integration for all common diff tools
+
+Very cool: customizable to your needs!
+
+---
+
+# Verify - Setup
+
+- We can define the output folder, file extensions, etc.
+- Example `ModuleInitializer` for global setup, defining the output folder:
+  ```csharp
+  using System.Runtime.CompilerServices;
+
+  public static class ModuleInitializer
+  {
+    [ModuleInitializer]
+    public static void Initialize() 
+    {
+      // To prevent cluttering the main folder, we will collect all verified snapshots in a dedicated folder.
+      // For details, see: https://github.com/VerifyTests/Verify/blob/main/docs/naming.md#derivepathinfo
+      DerivePathInfo(
+      (_, projectDirectory, type, method) => new(
+        directory: Path.Combine(projectDirectory, "VerifiedData"),
+        typeName: type.Name,
+        methodName: method.Name));
+    }
+  }
+  ```
+---
+
+# Verify - CI
+
+- works out of the box
+- No need to install anything on the CI server
+- Customizable to your needs
+
+---
+
+# Verify - JSON/XML
+
+- JSON/XML are first-class citizens:
+  - Instead of verifiying a string, you can verify a JSON/XML object:
+  - `VerifyJson` instead of `Verify`
+  - `VerifyXml` instead of `Verify`
+  - These customized methods will fail fast if the input is not valid JSON/XML
+
+---
+
+# Verify - JSON/XML: Example
+
+```csharp
+string InvalidJson = """{ "FirstName": "Homer" """;
+
+[Fact(Skip = "This does not fail fast, and will do a string comparison... and fail")]
+public Task Invalid_json_demo1() =>
+    Verify(InvalidJson);     // 👈 Verify, vs...
+
+[Fact(Skip = "This fails fast, because the input is invalid JSON")]
+public Task Invalid_json_demo2() =>
+    VerifyJson(InvalidJson); // 👈 VerifyJson 😎
+```
+
+Error message from second test:
+
+```csharp
+Argon.JsonReaderException: Unexpected end of content while loading JObject
+```
+
+It does not try to compare the invalid JSON with the verified JSON.
+
+So, if you know that you are working with JSON/XML, use `VerifyJson`/`VerifyXml`!
+---
+
 # Verify - Randomness
 
 No problem 👉 "Scrubbers"
@@ -378,40 +457,6 @@ Verify offers different strategies:
     Drawback:
     - works on Linux dev machine, CI pipeline, target platform
     - fails on Windows dev machine, until windows dev commits ☹️
-
----
-
-# Verify - JSON/XML
-
-- TODO: Add Example
-- JSON/XML are parsed and compared with .NET standard libraries
-- JSON/XML work out of the box
-
----
-
-# Verify - Setup
-
-- We can define the output folder
-- We can define the file extension
-- ...
-
----
-
-# Verify - CI
-
-- works out of the box
-- No need to install anything on the CI server
-
----
-
-# Verify - Diff-Tooling for Devs
-
-- Visual Studio / Windows
-- Rider
-- Visual Studio Code
-- 1st class support for all major IDEs
-
-Very cool: customizable to your needs!
 
 ---
 
