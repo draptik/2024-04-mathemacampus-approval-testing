@@ -15,6 +15,6 @@ dotnet_diagnostic.CA1707.severity = none
 # Don't complain about expression syntax vs block body syntax
 dotnet_diagnostic.IDE0022.severity = none
 
-[JsonTests.cs]
+[{JsonTests.cs,XmlTests.cs}]
 # Allow skipping tests for demo purposes
 dotnet_diagnostic.xUnit1004.severity = none
