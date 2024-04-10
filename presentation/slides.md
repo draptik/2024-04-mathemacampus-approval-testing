@@ -551,6 +551,15 @@ img {
 
 ---
 
+# Verify - Maintainer
+
+- Simon Cropp
+- https://github.com/SimonCropp
+- Simon reacts to issues and PRs very quickly
+  <img src="/images/simom_cropp_avatar.jpg"  width=250 />
+
+---
+
 # Summary
 
 - Verify is a great tool when dealing with legacy code
