@@ -3,6 +3,7 @@
 - Software Entwickler
 - Beruflich: C#
 - Interessen:
-    - Funktionale Programmierung
     - Software Crafting
+    - Test-Driven Development
+    - Funktionale Programmierung
     - Domain-Driven Design

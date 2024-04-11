@@ -28,7 +28,23 @@ Patrick Drechsler
 src: ./pages/01-intro.md
 ---
 
-# Legacy-Context: Domain
+---
+layout: image-left
+image: /images/machine4.jpg
+---
+
+# Legacy-Context
+
+- Domain
+- Tech-Stack(s)
+- Architecture
+
+---
+layout: image-right
+image: /images/machine1.jpg
+---
+
+# Domain
 
 - expert system
 - user: engineers in sales
@@ -42,8 +58,11 @@ src: ./pages/01-intro.md
     - mathematics is core domain!
 
 ---
+layout: image-right
+image: /images/machine2.jpg
+---
 
-# Legacy-Context: Tech-Stack(s)
+# Tech-Stack(s)
 
 - Main Stack: **LAMP**
   - **L**inux
@@ -56,8 +75,11 @@ src: ./pages/01-intro.md
   - MATLAB
 
 ---
+layout: image-right
+image: /images/machine3.jpg
+---
 
-# Legacy-Context: Architecture
+# Architecture
 
 - Frontend (FE): Angular 1
 - Backend (BE): PHP
@@ -69,10 +91,22 @@ src: ./pages/01-intro.md
 # Find a "Seam"
 
 - What is a Seam? 👉 M. Feathers "Working Effectively with Legacy Code"
-- Example: Redirecting a php request to a new dotnet console application
+
+<img
+  class="absolute bottom-20 left-10 h-70"
+  src="/images/feathers-legacy-code.jpg"
+/>
+
+---
+
+# Find a "Seam" - Example
+
+- Redirecting a php request to a new dotnet console application
   ```php
+  // Somewhere inside a PHP controller class...
+  //
   // Seam which toggles between PHP and .NET
-  if ($this->useDotNet) {
+  if ($this->useDotNet) { // 👈 Feature Toggle
     // C# calculation (new)
     return $this->calcDotNet("calculate", $request);
   }
@@ -82,6 +116,7 @@ src: ./pages/01-intro.md
   }
   ```
   ```php
+  // ⚠️ Use the "Seam"
   function calcDotNet($endpointName, Request $request)
   {
     // ...
@@ -100,16 +135,39 @@ src: ./pages/01-intro.md
 
 ---
 
-# Porting Code from PHP to C#
+# Porting Code from PHP to C# (1/2)
+
+<v-clicks>
+
+- ⚠️ Pay attention to data structures (dynamic vs. static typing) 
+  ```php
+  $foo[1] = 1;
+  $foo[2] = 2.3;
+  $foo[3] = "3";
+  // ...
+  // in some derived class:
+  $foo["bar"] = [1, "2", 3.3];
+  ```
+- and floating point numbers...
+
+</v-clicks>
+
+---
+
+# Porting Code from PHP to C# (2/2)
+
+<v-clicks>
 
 - a lot of typing (no AI usage)
-- I learned a lot about floating point numbers
 - Restructuring / Refactoring:
-  - I disagreed with certain decisions in the old system (in my opinion too much inheritance, followed by a lot of if/else in derived classes)
-  - 👉 I mapped each product type to an independent type without inheritance (a lot of code duplication)
-  - 👉 I added "Stateless constructs": even more code duplication
+  - ⚠️ Be extremely careful and conservative with restructuring
+  - I disagreed with certain decisions in the old system (in my opinion way too much inheritance, followed by a lot of if/else in base classes)
+    - 👉 I mapped each product type to an independent type without inheritance (a lot of **code duplication**)
+    - 👉 I added "Stateless constructs": even more **code duplication**
 - took 2-3 months
-- no tests during that time
+- no tests during that time 😭😭😭
+
+</v-clicks>
 
 ---
 
@@ -199,7 +257,7 @@ public record Person(string FirstName, string LastName, int Age);
 public Task VerifyPersonTest()
 {
     var homer = new Person("Homer", "Simpson", 39);
-    return Verify(homer);
+    return Verify(homer); // 👈 don't forget to "return" the Task 
 }
 ```
 
@@ -218,9 +276,6 @@ layout: two-cols-header
 ---
 
 # Where is the Arrange-Act-Assert?
-
-Let's add some logic.
-TODO: fix css
 
 ::left::
 
@@ -270,6 +325,22 @@ Verified text file:
 ```
 
 <style>
+.two-cols-header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr auto; /* Adjust to fit content */
+}
+
+/* Adjust other styles as necessary to fit the new grid definition */
+.col-bottom {
+  align-self: end;
+  grid-area: 3 / 1 / 4 / 3; /* Adjust this to correctly place the bottom area */
+}
+
+.col-left {
+  padding-right: 10px !important; /* This has no effect */
+}
+
 .slidev-code {
   font-size: 8px !important;
   line-height: 10px !important;
@@ -280,7 +351,7 @@ Verified text file:
 
 # Verify - Randomness
 
-No problem 👉 "Scrubbers"
+No problem 👉 "Scrubbers" to the rescue
 
 - GUIDs (by default)
 - TimeStamps (by default)
@@ -288,8 +359,6 @@ No problem 👉 "Scrubbers"
 ---
 layout: two-cols
 ---
-
-- TODO: fix slide layout (css) 
 
 ```csharp
 public record Person(
@@ -337,7 +406,7 @@ public Task PersonTest()
 
 https://github.com/VerifyTests/Verify/blob/main/docs/scrubbers.md
 
-- Example when generating SVGs using Plotly.NET: Scrub all lines containing `#clip` followed by a word character
+- Example when generating SVGs using [Plotly.NET](https://plotly.net/): Scrub all lines containing `#clip` followed by a word character
 - `ScrubLinesWithReplace` and friends
 
 ```fsharp
@@ -356,11 +425,12 @@ settings.ScrubLinesWithReplace(line =>
 
 # Verify - Diff-Tooling for Devs
 
-- Visual Studio / Windows
-- Rider
-- Visual Studio Code
+- Windows: [DiffEngineTray](https://github.com/VerifyTests/DiffEngine/blob/main/docs/tray.md)
+- [Resharper test runner](https://plugins.jetbrains.com/plugin/17241-verify-support)
+- [Rider test runner](https://plugins.jetbrains.com/plugin/17240-verify-support)
+- Terminal via `dotnet verify`: [Verify.Terminal](https://github.com/VerifyTests/Verify.Terminal)
 - 1st class support for all major IDEs
-- 1st class integration for all common diff tools
+- 1st class integration for most common [diff tools](https://github.com/VerifyTests/DiffEngine?tab=readme-ov-file#supported-tools)
 
 Very cool: customizable to your needs!
 
@@ -462,8 +532,8 @@ private static string GetFileContent(string filename)
 
 - Floating point numbers are always a joy 😿
 - Especially when working with different programming languages and platforms
-- `dotnet` will produce different results depending on the platform (Windows, Linux, macOS)
-  - [MathNet.Numerics](https://numerics.mathdotnet.com/) might produce different results...
+- .NET will produce different results depending on the platform (Windows, Linux, macOS)
+  - especially when doing real math: [MathNet.Numerics](https://numerics.mathdotnet.com/)
   - probably a niche case, but be aware of it
   - CI and/or target platform might differ from your dev machine 🤔
   - possible solutions.. 👉
@@ -492,7 +562,6 @@ Verify offers different strategies:
 
 # Verify - F# Support
 
-- Example: Plotly.NET (F#)
 - works out of the box
 
 ---
