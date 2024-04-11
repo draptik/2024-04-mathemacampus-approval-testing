@@ -40,8 +40,8 @@ image: /images/machine4.jpg
 - Architecture
 
 ---
-layout: image-right
-image: /images/machine1.jpg
+layout: image-left
+image: /images/science.jpg
 ---
 
 # Domain
@@ -56,6 +56,7 @@ image: /images/machine1.jpg
     - complex formulas (including integral calculus)
     - a lot of formulas (x * 10^3 LoC)
     - mathematics is core domain!
+- perfect match for my background 😎
 
 ---
 layout: image-right
@@ -145,10 +146,10 @@ image: /images/machine3.jpg
   $foo[2] = 2.3;
   $foo[3] = "3";
   // ...
-  // in some derived class:
+  // in some derived class (developed years later, by a different developer):
   $foo["bar"] = [1, "2", 3.3];
   ```
-- and floating point numbers...
+- and floating point numbers (more on that later)...
 
 </v-clicks>
 
@@ -177,6 +178,7 @@ image: /images/machine3.jpg
 - Run through the old system, save responses
 - Run through the new system, compare responses with saved responses
 - Rinse and repeat until the code coverage of the new .NET code is close to 100%
+  - Extensive use of code coverage tools
 
 How does that work in detail?
 
@@ -348,6 +350,9 @@ Verified text file:
 </style>
 
 ---
+layout: image-left
+image: /images/randomness.jpg
+---
 
 # Verify - Randomness
 
@@ -421,6 +426,9 @@ var settings = new VerifySettings();
 settings.ScrubLinesWithReplace(line =>
     System.Text.RegularExpressions.Regex.Replace(line, "#clip\\w+", "#clipSCRUBBED"));
 ```
+---
+layout: image-left
+image: /images/tooling.webp
 ---
 
 # Verify - Diff-Tooling for Devs
@@ -559,10 +567,13 @@ Verify offers different strategies:
     - fails on Windows dev machine, until windows dev commits ☹️
 
 ---
+layout: image-right
+image: /images/fsharp512.png
+---
 
 # Verify - F# Support
 
-- works out of the box
+works out of the box 😎
 
 ---
 layout: image-right

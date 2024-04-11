@@ -7,3 +7,4 @@
     - Test-Driven Development
     - Funktionale Programmierung
     - Domain-Driven Design
+- Background: Naturwissenschaftler
