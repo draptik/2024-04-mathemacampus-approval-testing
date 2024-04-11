@@ -1,42 +1,41 @@
 using System.Text.Json;
-using JetBrains.Annotations;
 
-namespace ApprovalTesting.Demo2.Tests;
-
-public class JsonTests
+namespace ApprovalTesting.Demo2.Tests
 {
-    private const string InvalidJson = """{ "FirstName": "Homer" """;
-
-    [Fact(Skip = "This does not fail fast, because the input is an invalid JSON")]
-    public Task Invalid_json_demo1() =>
-        Verify(InvalidJson);
-
-    [Fact(Skip = "This fails fast, because the input is an invalid JSON")]
-    public Task Invalid_json_demo2() =>
-        VerifyJson(InvalidJson);
-
-    [Fact]
-    public Task Person_serialization_demo()
+    public class JsonTests
     {
-        var person = new Person(
-            "Homer",
-            "Simpson",
-            39,
-            Guid.NewGuid(),
-            DateTime.UtcNow,
-            null);
+        private const string InvalidJson = """{ "FirstName": "Homer" """;
 
-        var json = JsonSerializer.Serialize(person);
-        return VerifyJson(json);
-    }
+        [Fact(Skip = "This does not fail fast, because the input is an invalid JSON")]
+        public Task Invalid_json_demo1() =>
+            Verify(InvalidJson);
 
-    [Fact]
-    public Task Valid_Json_using_language_injection() =>
-        VerifyJson(SampleJson);
+        [Fact(Skip = "This fails fast, because the input is an invalid JSON")]
+        public Task Invalid_json_demo2() =>
+            VerifyJson(InvalidJson);
 
-    [LanguageInjection(InjectedLanguage.JSON)]
-    private const string SampleJson =
-        """
+        [Fact]
+        public Task Person_serialization_demo()
+        {
+            var person = new Person(
+                "Homer",
+                "Simpson",
+                39,
+                Guid.NewGuid(),
+                DateTime.UtcNow,
+                null);
+
+            var json = JsonSerializer.Serialize(person);
+            return VerifyJson(json);
+        }
+
+        [Fact]
+        public Task Valid_Json_using_language_injection() =>
+            VerifyJson(SampleJson);
+
+        [LanguageInjection(InjectedLanguage.JSON)]
+        private const string SampleJson =
+            """
         {
           "FirstName": "Homer",
           "LastName": "Simpson",
@@ -46,4 +45,5 @@ public class JsonTests
           "Address": null
         }
         """;
+    }
 }

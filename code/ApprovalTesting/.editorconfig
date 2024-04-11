@@ -170,3 +170,8 @@ ij_xml_space_inside_empty_tag = true
 
 [*.json]
 indent_size = 2
+
+# TODO Not sure why this is suddenly needed 2024-04-12
+[*.cs]
+# This gives too many false positives
+dotnet_diagnostic.IDE0005.severity = none

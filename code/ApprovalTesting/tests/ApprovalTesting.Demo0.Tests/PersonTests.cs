@@ -1,11 +1,12 @@
-namespace ApprovalTesting.Demo0.Tests;
-
-public class PersonTests
+namespace ApprovalTesting.Demo0.Tests
 {
-    [Fact]
-    public Task HelloWorldTest()
+    public class PersonTests
     {
-        var homer = new Person("Homer", "Simpson", 39);
-        return Verify(homer);
+        [Fact]
+        public Task HelloWorldTest()
+        {
+            var homer = new Person("Homer", "Simpson", 39);
+            return Verify(homer);
+        }
     }
 }
