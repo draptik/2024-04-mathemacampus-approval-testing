@@ -5,13 +5,86 @@
     {
       "tool": {
         "name": "Microsoft (R) Visual C# Compiler",
-        "version": "4.8.0.0",
-        "fileVersion": "4.8.0-7.24067.24 (26357112)",
-        "semanticVersion": "4.8.0",
+        "version": "4.9.0.0",
+        "fileVersion": "4.9.0-3.24067.18 (4fc721bb)",
+        "semanticVersion": "4.9.0",
         "language": "en-US"
       },
       "results": [
-      ]
+        {
+          "ruleId": "IDE0160",
+          "level": "warning",
+          "message": "Convert to block scoped namespace",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/talks/2024-04-mathemacampus-approval-testing/code/ApprovalTesting/tests/ApprovalTesting.Demo0.Tests/PersonTests.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/talks/2024-04-mathemacampus-approval-testing/code/ApprovalTesting/tests/ApprovalTesting.Demo0.Tests/PersonTests.cs",
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 11,
+                  "endColumn": 2
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "EnableGenerateDocumentationFile",
+          "level": "warning",
+          "message": "Set MSBuild property 'GenerateDocumentationFile' to 'true' in project file to enable IDE0005 (Remove unnecessary usings/imports) on build",
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "EnableGenerateDocumentationFile": {
+          "id": "EnableGenerateDocumentationFile",
+          "shortDescription": "Set MSBuild property 'GenerateDocumentationFile' to 'true'",
+          "fullDescription": "Add the following PropertyGroup to your MSBuild project file to enable IDE0005 (Remove unnecessary usings/imports) on build:\u000d\u000a  <PropertyGroup>\u000d\u000a    <!--\u000d\u000a      Make sure any documentation comments which are included in code get checked for syntax during the build, but do\u000d\u000a      not report warnings for missing comments.\u000d\u000a      CS1573: Parameter 'parameter' has no matching param tag in the XML comment for 'parameter' (but other parameters do)\u000d\u000a      CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'\u000d\u000a      CS1712: Type parameter 'type_parameter' has no matching typeparam tag in the XML comment on 'type_or_member' (but other type parameters do)\u000d\u000a    -->\u000d\u000a    <GenerateDocumentationFile>True</GenerateDocumentationFile>\u000d\u000a    <NoWarn>$(NoWarn),1573,1591,1712</NoWarn>\u000d\u000a  </PropertyGroup>\u000d\u000a    ",
+          "defaultLevel": "warning",
+          "helpUri": "https://github.com/dotnet/roslyn/issues/41640",
+          "properties": {
+            "category": "Style",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnforceOnBuild_Never"
+            ]
+          }
+        },
+        "IDE0160": {
+          "id": "IDE0160",
+          "shortDescription": "Convert to block scoped namespace",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0160",
+          "properties": {
+            "category": "Style",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnforceOnBuild_HighlyRecommended"
+            ]
+          }
+        }
+      }
     }
   ]
 }
