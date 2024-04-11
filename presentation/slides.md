@@ -565,10 +565,22 @@ Verify offers different strategies:
 - works out of the box
 
 ---
+layout: image-right
+image: /images/verify-extensions.png
+---
 
-# Verify - An Example
 
-- TODO: An example showing many features of Verify (incl. web-api)
+### Verify - Many Extensions
+
+https://github.com/VerifyTests/Verify?tab=readme-ov-file#extensions
+
+- Images
+- PDFs
+- Databases
+- HTTP
+- Desktop-UI
+- Infrastructure
+- and many more...
 
 ---
 
