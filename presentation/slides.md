@@ -25,6 +25,8 @@ download: true
 Patrick Drechsler
 
 ---
+src: ./pages/01-intro.md
+---
 
 # Legacy-Context: Domain
 
