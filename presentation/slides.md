@@ -568,3 +568,7 @@ img {
 - Try to keep the "testing the seam" loop as short as possible
 - As always: tests should be automated (especially in CI)...
 - You might still have to deal with the final output format (encoding, floating point numbers, etc.)
+
+---
+src: ./pages/99-end.md
+---
