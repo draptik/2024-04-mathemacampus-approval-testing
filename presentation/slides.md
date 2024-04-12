@@ -369,8 +369,12 @@ No problem 👉 "Scrubbers" to the rescue
 - TimeStamps (by default)
 
 ---
-layout: two-cols
+layout: two-cols-header
 ---
+
+## Randomness - Default Scrubbers
+
+::left::
 
 ```csharp
 public record Person(
@@ -425,10 +429,6 @@ public Task PersonTest()
   grid-area: 3 / 1 / 4 / 3; /* Adjust this to correctly place the bottom area */
 }
 
-.col-left {
-  padding-right: 10px !important; /* This has no effect */
-}
-
 .two-cols-header {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -436,6 +436,11 @@ public Task PersonTest()
   column-gap: 20px; /* Adjust the gap size as needed */
 }
 
+
+.slidev-code {
+  font-size: 10px !important;
+  line-height: 11px !important;
+}
 </style>
 
 ---
