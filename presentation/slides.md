@@ -77,7 +77,7 @@ image: /images/machine2.jpg
 
 ---
 layout: image-right
-image: "/images/machine3.jpg"
+image: /images/machine3.jpg
 ---
 
 # Architecture
