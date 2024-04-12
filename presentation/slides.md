@@ -77,7 +77,7 @@ image: /images/machine2.jpg
 
 ---
 layout: image-right
-image: /images/machine3.jpg
+image: "/images/machine3.jpg"
 ---
 
 # Architecture
@@ -341,6 +341,13 @@ Verified text file:
 
 .col-left {
   padding-right: 10px !important; /* This has no effect */
+}
+
+.two-cols-header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr auto;
+  column-gap: 100px; /* Adjust the gap size as needed */
 }
 
 .slidev-code {
