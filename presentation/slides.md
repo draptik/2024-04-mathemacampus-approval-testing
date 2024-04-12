@@ -347,7 +347,7 @@ Verified text file:
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto 1fr auto;
-  column-gap: 100px; /* Adjust the gap size as needed */
+  column-gap: 20px; /* Adjust the gap size as needed */
 }
 
 .slidev-code {
@@ -411,6 +411,32 @@ public Task PersonTest()
   UpdatedAt: DateTime_1  // 👈
 }
 ```
+
+<style>
+.two-cols-header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr auto; /* Adjust to fit content */
+}
+
+/* Adjust other styles as necessary to fit the new grid definition */
+.col-bottom {
+  align-self: end;
+  grid-area: 3 / 1 / 4 / 3; /* Adjust this to correctly place the bottom area */
+}
+
+.col-left {
+  padding-right: 10px !important; /* This has no effect */
+}
+
+.two-cols-header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr auto;
+  column-gap: 20px; /* Adjust the gap size as needed */
+}
+
+</style>
 
 ---
 
